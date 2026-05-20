@@ -1,0 +1,17 @@
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h3 mb-0">Restaurants</h1>
+  <%= link_to "Add a restaurant", new_restaurant_path, class: "btn btn-primary" %>
+</div>
+
+<div class="list-group">
+  <% @restaurants.each do |restaurant| %>
+    <%= link_to restaurant_path(restaurant), class: "list-group-item list-group-item-action" do %>
+      <div class="d-flex justify-content-between">
+        <strong><%= restaurant.name %></strong>
+        <span class="text-capitalize"><%= restaurant.category %></span>
+      </div>
+      <div class="small text-muted"><%= restaurant.address %></div>
+    <% end %>
+  <% end %>
+</div>

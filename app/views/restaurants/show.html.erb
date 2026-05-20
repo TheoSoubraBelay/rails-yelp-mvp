@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between align-items-start mb-4">
+  <div>
+    <h1 class="h3 mb-1"><%= @restaurant.name %></h1>
+    <div class="text-muted"><%= @restaurant.address %></div>
+    <div class="text-capitalize"><%= @restaurant.category %></div>
+  </div>
+  <%= link_to "Back to list", restaurants_path, class: "btn btn-outline-secondary" %>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-7">
+    <h2 class="h5">Reviews</h2>
+    <% if @restaurant.reviews.any? %>
+      <ul class="list-group">
+        <% @restaurant.reviews.each do |review| %>
+          <li class="list-group-item">
+            <div class="fw-semibold">Rating: <%= review.rating %>/5</div>
+            <div><%= review.content %></div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-muted">No reviews yet.</p>
+    <% end %>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="h5 mb-3">Add a review</h2>
+        <%= simple_form_for([@restaurant, @review]) do |f| %>
+          <%= f.input :content %>
+          <%= f.input :rating %>
+          <%= f.submit "Create review", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
